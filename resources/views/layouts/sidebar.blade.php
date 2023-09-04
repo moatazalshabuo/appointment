@@ -57,11 +57,29 @@
                                         </a>
                                         <hr>
                                     </li>
+                                    @if (Auth::user()->type == 0)
+                                        <li class="nav-item dropdown">
+                                            <a href="#fileman" data-toggle="collapse" aria-expanded="false"
+                                                class="dropdown-toggle nav-link">
+                                                <i class="fe fe-folder fe-16"></i>
+                                                <span class="ml-3 item-text">الادارة</span>
+                                            </a>
+                                            <ul class="collapse list-unstyled pl-4 w-100" id="fileman">
+                                                <a class="nav-link pl-3" href="{{ route('user') }}"><span
+                                                        class="ml-1">المستخدمين</span></a>
+                                                <a class="nav-link pl-3" href="./files-grid.html"><span
+                                                        class="ml-1">المسؤول</span></a>
+                                            </ul>
+                                        </li>
+                                    @endif
                                     <li class="nav-item w-100">
-                                        <a class="btn btn-danger w-100" style="margin: auto" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
+                                        <a class="btn btn-danger w-100" style="margin: auto"
+                                            href="{{ route('logout') }}"
+                                            onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
                                             Logout
                                         </a>
-                                        <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        <form id="frm-logout" action="{{ route('logout') }}" method="POST"
+                                            style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
@@ -78,8 +96,7 @@
         <div class="simplebar-scrollbar" style="width: 0px; display: none;"></div>
     </div>
     <div class="simplebar-track simplebar-vertical" style="visibility: visible;">
-        <div class="simplebar-scrollbar"
-            style="height: 290px; transform: translate3d(0px, 0px, 0px); display: block;">
+        <div class="simplebar-scrollbar" style="height: 290px; transform: translate3d(0px, 0px, 0px); display: block;">
         </div>
     </div>
 </aside>

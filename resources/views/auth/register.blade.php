@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container m-3">
     <div class="row align-items-center h-100">
         <div class="col-md-8">
             <div class="mx-auto text-center my-4">
@@ -16,13 +16,13 @@
                         </g>
                     </svg>
                 </a>
-                <h2 class="my-3">Register</h2>
+                <h2 class="my-3">التسجيل</h2>
             </div>
             <form method="POST" action="{{ route('register') }}">
                 @csrf
 
                 <div class="form-group">
-                    <label for="name" class=" col-form-label text-md-end">{{ __('Name') }}</label>
+                    <label for="name" class=" col-form-label text-md-end">الاسم</label>
 
                     <div class="">
                         <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
@@ -38,7 +38,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="email" class="col-form-label text-md-end">{{ __('Email Address') }}</label>
+                            <label for="email" class="col-form-label text-md-end">البريد الالكتروني</label>
 
                             <div class="">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
