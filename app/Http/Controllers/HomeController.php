@@ -39,6 +39,13 @@ class HomeController extends Controller
         return view("public/appointment", compact('todo'));
     }
 
+    public function appointment_type($type)
+    {
+        $todo = TodoList::where(["user_id"=> Auth::id(),'type_repet'=>$type])->get();
+
+        return view('public/appointment2',compact('todo','type'));
+    }
+
     public function profile()
     {
         return view('public/profile');

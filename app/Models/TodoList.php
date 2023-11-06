@@ -23,4 +23,8 @@ class TodoList extends Model
         "code"
     ];
     protected $table = "todo_list";
+
+    // public get_days(){
+
+    // }
 }

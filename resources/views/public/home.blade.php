@@ -26,7 +26,7 @@
                 </div>
                 <div id='calendar'></div>
                 <!-- new event modal -->
-                <div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel"
+                {{-- <div class="modal fade" id="eventModal2" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -92,6 +92,266 @@
                             <div class="modal-footer d-flex justify-content-between">
 
                                 <button type="button" class="btn mb-2 btn-primary" id="save-time">Save Event</button>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- new event modal --> --}}
+
+                <div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+
+                                <h5 class="modal-title" id="varyModalLabel">اضافة موعد</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                               
+                            </div>
+                            <div class="modal-body p-4">
+                                <div class="block">
+                                    <ul class="nav nav-pills nav-fill">
+                                        <li class="nav-item">
+                                          <a class="nav-link active" aria-current="page" href="#" data-form='form-todo'>محاضرة </a>
+                                        </li>
+                                        <li class="nav-item">
+                                          <a class="nav-link" href="#" data-form='form-conference'>مؤتمر</a>
+                                        </li>
+                                        <li class="nav-item">
+                                          <a class="nav-link" data-form="form-discussion">مناقشة بحث</a>
+                                        </li>
+                                        <li class="nav-item">
+                                          <a class="nav-link " data-form="form-meeting">اجتماع</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link " data-form="form-activety">نشاط</a>
+                                          </li>
+                                      </ul>
+                                </div>
+                                <div class="text-danger error-todo"></div>
+                                <form id="form-todo" class="lutcuer">
+                                    @csrf
+                                    <input type="hidden" name="type" value="lutcer">
+                                    <div class="form-group">
+                                        <label for="eventTitle" class="col-form-label">المادة</label>
+                                        <input type="text" class="form-control" name="title" id="eventTitle"
+                                            placeholder="Add event title">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="eventNote" class="col-form-label">المكان</label>
+                                        <textarea class="form-control" id="eventNote" name="note" placeholder="Add some note for your event"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <select class="form-control select2" name="days[]">
+                                            <option value="Saturday">السبت</option>
+                                            <option value="Sunday">الاحد</option>
+                                            <option value="Monday">الاثنين</option>
+                                            <option value="Tuesday">الثلاثاء</option>
+                                            <option value="Wednesday">الاربعاء</option>
+                                            <option value="Thursday">الخميس</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">بداية الدراسة</label>
+                                        <input type="date" class="form-control" name="start_study">
+                                    </div>
+                                    <label for="date-input1">موعد المحاضرة </label>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="date-input1">من </label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text" id="button-addon-date"><span
+                                                            class="fe fe-calendar fe-16"></span></div>
+                                                </div>
+                                                <input type="time" class="form-control drgpicker" name="start"
+                                                    id="drgpicker-start">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="startDate">الى</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text" id="button-addon-time">
+                                                        <span class="fe fe-clock fe-16"></span>
+                                                    </div>
+                                                </div>
+                                                <input type="time" class="form-control time-input" name="end" id="start-time">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                           
+                                            <div class="form-group col">
+                                                <label>اجمالي عدد المحاضارات</label>
+                                                <input type="number" name="num_repet" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <form id="form-conference">
+                                    @csrf
+                                    <input type="hidden" name="type" value="conference">
+                                    <div class="form-group">
+                                        <label for="eventTitle" class="col-form-label">عنوان المؤتمر</label>
+                                        <input type="text" class="form-control" name="title" id="eventTitle"
+                                            placeholder="Add event title">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="eventNote" class="col-form-label">المكان</label>
+                                        <textarea class="form-control" id="eventNote" name="note" placeholder="Add some note for your event"></textarea>
+                                    </div>
+                                
+                                    <label for="date-input1">موعد المؤتمر </label>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="date-input1">من </label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text" id="button-addon-date"><span
+                                                            class="fe fe-calendar fe-16"></span></div>
+                                                </div>
+                                                <input type="datetime-local" class="form-control drgpicker" name="start"
+                                                    id="drgpicker-start">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="startDate">الى</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text" id="button-addon-time">
+                                                        <span class="fe fe-clock fe-16"></span>
+                                                    </div>
+                                                </div>
+                                                <input type="datetime-local" class="form-control time-input" name="end" id="start-time">
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </form>
+                                <form id="form-discussion">
+                                    @csrf
+                                    <input type="hidden" name="type" value="discussion">
+                                    <div class="form-group">
+                                        <label for="eventTitle" class="col-form-label">عنوان البحث</label>
+                                        <input type="text" class="form-control" name="title" id="eventTitle"
+                                            placeholder="Add event title">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="eventNote" class="col-form-label">المكان</label>
+                                        <textarea class="form-control" id="eventNote" name="note" placeholder="Add some note for your event"></textarea>
+                                    </div>
+                                
+                                    <label for="date-input1">موعد البحث </label>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="date-input1">من </label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text" id="button-addon-date"><span
+                                                            class="fe fe-calendar fe-16"></span></div>
+                                                </div>
+                                                <input type="datetime-local" class="form-control drgpicker" name="start"
+                                                    id="drgpicker-start">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="startDate">الى</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text" id="button-addon-time">
+                                                        <span class="fe fe-clock fe-16"></span>
+                                                    </div>
+                                                </div>
+                                                <input type="datetime-local" class="form-control time-input" name="end" id="start-time">
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </form>
+                                <form id="form-meeting">
+                                    @csrf
+                                    <input type="hidden" name="type" value="meeting">
+                                    <div class="form-group">
+                                        <label for="eventTitle" class="col-form-label">عنوان الاجتماع</label>
+                                        <input type="text" class="form-control" name="title" id="eventTitle"
+                                            placeholder="Add event title">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="eventNote" class="col-form-label">المكان</label>
+                                        <textarea class="form-control" id="eventNote" name="note" placeholder="Add some note for your event"></textarea>
+                                    </div>
+                                
+                                    <label for="date-input1">موعد الاجتماع </label>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="date-input1">من </label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text" id="button-addon-date"><span
+                                                            class="fe fe-calendar fe-16"></span></div>
+                                                </div>
+                                                <input type="datetime-local" class="form-control drgpicker" name="start"
+                                                    id="drgpicker-start">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="startDate">الى</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text" id="button-addon-time">
+                                                        <span class="fe fe-clock fe-16"></span>
+                                                    </div>
+                                                </div>
+                                                <input type="datetime-local" class="form-control time-input" name="end" id="start-time">
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </form>
+                                <form id="form-activety">
+                                    @csrf
+                                    <input type="hidden" name="type" value="activety">
+                                    <div class="form-group">
+                                        <label for="eventTitle" class="col-form-label">عنوان </label>
+                                        <input type="text" class="form-control" name="title" id="eventTitle"
+                                            placeholder="Add event title">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="eventNote" class="col-form-label">المكان</label>
+                                        <textarea class="form-control" id="eventNote" name="note" placeholder="Add some note for your event"></textarea>
+                                    </div>
+                                
+                                    <label for="date-input1">موعد النشاط </label>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="date-input1">من </label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text" id="button-addon-date"><span
+                                                            class="fe fe-calendar fe-16"></span></div>
+                                                </div>
+                                                <input type="datetime-local" class="form-control drgpicker" name="start"
+                                                    id="drgpicker-start">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="startDate">الى</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text" id="button-addon-time">
+                                                        <span class="fe fe-clock fe-16"></span>
+                                                    </div>
+                                                </div>
+                                                <input type="datetime-local" class="form-control time-input" name="end" id="start-time">
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-between">
+                                <button type="button" class="btn mb-2 btn-primary" id="save-time">حفظ</button>
                             </div>
                         </div>
                     </div>
@@ -184,7 +444,10 @@
         $(function() {
             $("#save-time").click(() => {
                 $(".error-todo").html("")
-                axios.post("/api/save", $("#form-todo").serialize()).then((res) => {
+                var form = $('.nav-link.active').data('form')
+                console.log(form)
+                axios.post("/api/save", $(`#${form}`).serialize()).then((res) => {
+                   console.log(res)
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
@@ -194,7 +457,7 @@
                     }).then(()=>{
                         location.reload()
                     })
-                    // $("#form-todo").trigger("reset")
+                    $("#form-todo").trigger("reset")
                 }).catch((res) => {
                     var error = res.response.data.errors
                     for (let x in error) {
@@ -203,6 +466,14 @@
                         }
                     }
                 })
+            })
+
+            $(".nav-link").click(function(){
+                name = $(this).data('form')
+                $('form').hide()
+                $(`#${name}`).show()
+                $(this).parent().siblings().children().removeClass('active');
+                $(this).addClass('active')
             })
         })
     </script>

@@ -120,6 +120,7 @@
                     </div>
                 </div>
             </form>
+            <div class="m-3 text-center">i alredy have an account <a href="{{ route('login') }}">Login</a></div>
         </div>
     </div>
 </div>

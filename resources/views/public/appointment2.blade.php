@@ -1,7 +1,15 @@
 @extends('layouts/master')
 
 @section('title')
-    ادارة المواعيد
+@if ($type == 'discussion')
+    مناقشات
+@elseif($type == 'conference')
+    مؤتمرات
+@elseif($type == 'meeting')
+    الاجتماع
+@elseif($type == 'activety')
+    النشاطات
+@endif
 @endsection
 @section('links')
 @endsection
@@ -14,7 +22,6 @@
 
                 <div class="row my-4">
                     @foreach ($todo as $item)
-                        @if ($item->type_repet == 'lutcer')
                             <div class="col-md-4">
                                 <div class="card mb-4 shadow" style="position: relative">
                                     <div class="card-body my-n3">
@@ -38,14 +45,14 @@
                                                     </span>
                                                 @endif
                                                 <a href="#">
-                                                    <h3 class="h5 mt-4 mb-1">المادة : {{ $item->title }}</h3>
+                                                    <h3 class="h5 mt-4 mb-1">العنوان : {{ $item->title }}</h3>
                                                 </a>
                                                 <p class="text-muted">مكان : {{ $item->note }}</p>
 
                                             </div> <!-- .col -->
                                             <div class="col-12 m-2">
-                                                ايام 
-                                                <span>{{ date('l',strtotime($item->start))  }}</span>
+                                                اليوم 
+                                                <span>{{ date('l',strtotime($item->start))  }} - {{ date('Y-m-d',strtotime($item->start)) }}</span>
                                             </div>
                                             <div class="col-12 m-2">
                                                 <small>
@@ -57,13 +64,7 @@
                                             <div class="col-md-12 m-2">
                                                 
                                             </div>
-                                            <div class="col-md-12 m-2">
-                                                <span>عدد المحاضارات</span> :
-                                                <span class="badge badge-secondary">
-                                                    {{ $item->num_repet }}
-                                                </span>
-                                            </div>
-                                        </div> <!-- .row -->
+                                          <!-- .row -->
                                     </div> <!-- .card-body -->
                                     <div class="card-footer">
                                         <div class="button-group">
@@ -75,7 +76,6 @@
                                     </div> <!-- .card-footer -->
                                 </div> <!-- .card -->
                             </div> <!-- .col-md-->
-                        @endif
                     @endforeach
                 </div> <!-- .row-->
 
@@ -101,9 +101,9 @@
                     <div class="text-danger error-todo"></div>
                     <form id="form-todo">
                         @csrf
-                        <input type="hidden" name="type" value="lutcer">
+                        <input type="hidden" name="type" value="44">
                         <div class="form-group">
-                            <label for="eventTitle" class="col-form-label">المادة</label>
+                            <label for="eventTitle" class="col-form-label">العنوان</label>
                             <input type="text" class="form-control" name="title" id="title"
                                 placeholder="Add event title">
                                 <input type="hidden" name="code" id="code">
@@ -112,21 +112,9 @@
                             <label for="eventNote" class="col-form-label">المكان</label>
                             <textarea class="form-control" id="note" name="note" placeholder="Add some note for your event"></textarea>
                         </div>
-                        <div class="form-group">
-                            <select class="form-control " id='days' name="days[]">
-                                <option value="Saturday">السبت</option>
-                                <option value="Sunday">الاحد</option>
-                                <option value="Monday">الاثنين</option>
-                                <option value="Tuesday">الثلاثاء</option>
-                                <option value="Wednesday">الاربعاء</option>
-                                <option value="Thursday">الخميس</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="">بداية الدراسة</label>
-                            <input type="date" class="form-control" name="start_study" id='start_study'>
-                        </div>
-                        <label for="date-input1">موعد المحاضرة </label>
+                       
+                       
+                        <label for="date-input1">الموعد  </label>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="date-input1">من </label>
@@ -135,7 +123,7 @@
                                         <div class="input-group-text" id="button-addon-date"><span
                                                 class="fe fe-calendar fe-16"></span></div>
                                     </div>
-                                    <input type="time" class="form-control drgpicker" name="start"
+                                    <input type="datetime-local" class="form-control drgpicker" name="start"
                                         id="start">
                                 </div>
                             </div>
@@ -147,16 +135,10 @@
                                             <span class="fe fe-clock fe-16"></span>
                                         </div>
                                     </div>
-                                    <input type="time" class="form-control time-input" name="end" id="end">
+                                    <input type="datetime-local" class="form-control time-input" name="end" id="end">
                                 </div>
                             </div>
-                            <div class="form-row">
-                               
-                                <div class="form-group col">
-                                    <label>اجمالي عدد المحاضارات</label>
-                                    <input type="number" name="num_repet" id='num_repet' class="form-control">
-                                </div>
-                            </div>
+                            
                         </div>
                     </form>
                     {{-- <form id="form-todo">
@@ -226,17 +208,15 @@
     <script>
         $(function() {
             $(".edit").click(function() {
-                axios.get("{{ route('getAppointment', '') }}/" + $(this).data('id')).then((res) => {
-                    const data = res.data
+                axios.get("{{ route('getAppointment1', '') }}/" + $(this).data('id')).then((res) => {
+                    const data = res.data.data
                     console.log(data)
                     $("#title").val(data.title)
                     $("#code").val(data.code)
                     $("#note").val(data.note)
                     $("#start").val(data.start)
                     $("#end").val(data.end)
-                    $("#num_repet").val(data.num_repet)
-                    $("#start_study").val(data.start_study)
-                    $('#days').val(data.days)
+                    
 
                     $("#eventModal").modal("show")
                 }).catch((res) => {

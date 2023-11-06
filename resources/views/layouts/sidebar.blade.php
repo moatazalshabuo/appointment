@@ -44,11 +44,42 @@
                                         <a class="nav-link @if (route('appointemt') == Request::url()) liactive @endif"
                                             href="{{ route('appointemt') }}">
                                             <i class="fe fe-calendar fe-16" style="font-size: 16px"></i>
-                                            <span class="ml-3 item-text" style="font-size: 16px">ادارة المواعيد</span>
+                                            <span class="ml-3 item-text" style="font-size: 16px">ادارة المحاضارات</span>
                                         </a>
                                         <hr>
                                     </li>
-
+                                    <li class="nav-item w-100">
+                                        <a class="nav-link @if (route('appointemt-type','conference') == Request::url()) liactive @endif"
+                                            href="{{ route('appointemt-type','conference') }}">
+                                            <i class="fe fe-calendar fe-16" style="font-size: 16px"></i>
+                                            <span class="ml-3 item-text" style="font-size: 16px">ادارة المؤتمرات</span>
+                                        </a>
+                                        <hr>
+                                    </li>
+                                    <li class="nav-item w-100">
+                                        <a class="nav-link @if (route('appointemt-type','discussion') == Request::url()) liactive @endif"
+                                            href="{{ route('appointemt-type','discussion') }}">
+                                            <i class="fe fe-calendar fe-16" style="font-size: 16px"></i>
+                                            <span class="ml-3 item-text" style="font-size: 16px">ادارة المناقشات</span>
+                                        </a>
+                                        <hr>
+                                    </li>
+                                    <li class="nav-item w-100">
+                                        <a class="nav-link @if (route('appointemt-type','meeting') == Request::url()) liactive @endif"
+                                            href="{{ route('appointemt-type','meeting') }}">
+                                            <i class="fe fe-calendar fe-16" style="font-size: 16px"></i>
+                                            <span class="ml-3 item-text" style="font-size: 16px">ادارة الاجتماعات</span>
+                                        </a>
+                                        <hr>
+                                    </li>
+                                    <li class="nav-item w-100">
+                                        <a class="nav-link @if (route('appointemt-type','activety') == Request::url()) liactive @endif"
+                                            href="{{ route('appointemt-type','activety') }}">
+                                            <i class="fe fe-calendar fe-16" style="font-size: 16px"></i>
+                                            <span class="ml-3 item-text" style="font-size: 16px">ادارة النشاطات</span>
+                                        </a>
+                                        <hr>
+                                    </li>
                                     <li class="nav-item w-100">
                                         <a class="nav-link @if (route('profile') == Request::url()) liactive @endif"
                                             href="{{ route('profile') }}">
@@ -57,7 +88,7 @@
                                         </a>
                                         <hr>
                                     </li>
-                                    @if (Auth::user()->type == 0)
+                                    {{-- @if (Auth::user()->type == 0)
                                         <li class="nav-item dropdown">
                                             <a href="#fileman" data-toggle="collapse" aria-expanded="false"
                                                 class="dropdown-toggle nav-link">
@@ -71,7 +102,8 @@
                                                         class="ml-1">المسؤول</span></a>
                                             </ul>
                                         </li>
-                                    @endif
+                                    @endif --}}
+                                    {{-- appointemt-type --}}
                                     <li class="nav-item w-100">
                                         <a class="btn btn-danger w-100" style="margin: auto"
                                             href="{{ route('logout') }}"

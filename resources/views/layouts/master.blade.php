@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
-    <title>Tiny Dashboard - A Bootstrap Dashboard Template</title>
+    <title>Appointment</title>
     <!-- Simple bar CSS -->
     <link rel="stylesheet" href="{{ URL::asset('css/simplebar.css') }}">
     <!-- Fonts CSS -->
@@ -26,11 +26,13 @@
     <link rel="stylesheet" href="{{ URL::asset('css/app-dark.css') }}" id="darkTheme" disabled>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
-        @import url(https://fonts.googleapis.com/earlyaccess/lateef.css);
+        @import url(https://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
 
-        body * {
-            font-family: 'Lateef', serif;
-        }
+/* font-family: 'Lateef', serif; */
+body * {
+font-family: 'Droid Arabic Kufi', serif;
+
+}
 
         .seacren-sm {
             position: fixed;
@@ -255,7 +257,9 @@
                     noty()
                 })
             })
+        $(".select2").select2()
         })
+
     </script>
 </body>
 
