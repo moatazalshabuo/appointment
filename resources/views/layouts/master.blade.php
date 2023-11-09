@@ -26,13 +26,13 @@
     <link rel="stylesheet" href="{{ URL::asset('css/app-dark.css') }}" id="darkTheme" disabled>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
-        @import url(https://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
+     @import url('https://fonts.googleapis.com/css?family=Changa:400,700&subset=arabic');
 
 /* font-family: 'Lateef', serif; */
-body * {
-font-family: 'Droid Arabic Kufi', serif;
+        body * {
+            font-family: 'Changa';
 
-}
+        }
 
         .seacren-sm {
             position: fixed;
@@ -66,11 +66,45 @@ font-family: 'Droid Arabic Kufi', serif;
             color: #0045ce !important;
             text-decoration: underline !important;
         }
+        .btn-primary{
+            color: #fff;
+            background-color: #17629b !important;
+        }
+        .text-primary{
+            color:#17629b !important
+        }
+        .lod {
+            background-color: #fff;
+            position: fixed;
+            top: 0;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            z-index: 99;
+            justify-content: center;
+        }
+        .custom-loader {
+            width:50px;
+            height:50px;
+            border-radius:50%;
+            border:8px solid;
+            border-color:#766DF4 #0000;
+            animation:s1 1s infinite;
+            }
+            @keyframes s1 {to{transform: rotate(.5turn)}}
+
+            .none{
+                display: none !important;
+                animation: ease-in-out 1s;
+            }
     </style>
     @yield('style')
 </head>
 
 <body class="vertical  light rtl ">
+    <div class="lod d-flex align-items-center">
+        <div class="custom-loader"></div>
+    </div>
     <div class="wrapper">
         @include('layouts/navbar')
         @include('layouts/sidebar')
@@ -148,45 +182,64 @@ font-family: 'Droid Arabic Kufi', serif;
                 </div>
                 <div class="modal-body px-5">
                     <div class="row align-items-center">
-                        <div class="col-6 text-center">
+                        <a class="col-6 text-center" href="{{ route('home') }}">
                             <div class="squircle bg-success justify-content-center">
-                                <i class="fe fe-cpu fe-32 align-self-center text-white"></i>
+                                <i class="fe fe-home fe-32 align-self-center text-white"></i>
                             </div>
-                            <p>Control area</p>
-                        </div>
-                        <div class="col-6 text-center">
+                            <p>الرئيسية</p>
+                        </a>
+                        <a class="col-6 text-center" onclick="$('.modal-shortcut').modal('hide')" data-toggle="modal"
+                        data-target=".modal-notif">
                             <div class="squircle bg-primary justify-content-center">
-                                <i class="fe fe-activity fe-32 align-self-center text-white"></i>
+                                <i class="fe fe-bell fe-32 align-self-center text-white"></i>
                             </div>
-                            <p>Activity</p>
-                        </div>
+                            <p>الاشعارات</p>
+                        </a>
                     </div>
                     <div class="row align-items-center">
-                        <div class="col-6 text-center">
+                        <a class="col-6 text-center" href="{{ route('appointemt') }}">
                             <div class="squircle bg-primary justify-content-center">
-                                <i class="fe fe-droplet fe-32 align-self-center text-white"></i>
+                                <i class="fe fe-calendar fe-32 align-self-center text-white"></i>
                             </div>
-                            <p>Droplet</p>
-                        </div>
-                        <div class="col-6 text-center">
+                            <p>ادارة المحاضرات</p>
+                        </a>
+                        <a class="col-6 text-center" href="{{ route('appointemt-type','conference') }}">
                             <div class="squircle bg-primary justify-content-center">
-                                <i class="fe fe-upload-cloud fe-32 align-self-center text-white"></i>
+                                <i class="fe fe-calendar fe-32 align-self-center text-white"></i>
                             </div>
-                            <p>Upload</p>
-                        </div>
+                            <p>ادارة المؤتمرات</p>
+                        </a>
                     </div>
                     <div class="row align-items-center">
-                        <div class="col-6 text-center">
+                        <a class="col-6 text-center"  href="{{ route('appointemt-type','discussion') }}">
                             <div class="squircle bg-primary justify-content-center">
-                                <i class="fe fe-users fe-32 align-self-center text-white"></i>
+                                <i class="fe fe-calendar fe-32 align-self-center text-white"></i>
                             </div>
-                            <p>Users</p>
-                        </div>
-                        <div class="col-6 text-center">
+                            <p>ادارة المناقشات</p>
+                        </a>
+                        <a class="col-6 text-center" href="{{ route('appointemt-type','meeting') }}">
                             <div class="squircle bg-primary justify-content-center">
-                                <i class="fe fe-settings fe-32 align-self-center text-white"></i>
+                                <i class="fe fe-calendar fe-32 align-self-center text-white"></i>
                             </div>
-                            <p>Settings</p>
+                            <p>ادارة الاجتماعات</p>
+                        </a>
+                    </div>
+                    <div class="row align-items-center">
+                        <a class="col-6 text-center" href="{{ route('appointemt-type','activety') }}">
+                            <div class="squircle bg-primary justify-content-center">
+                                <i class="fe fe-calendar fe-32 align-self-center text-white"></i>
+                            </div>
+                            <p>ادارة الانشطة</p>
+                        </a>
+                        <div class="col-6 text-center">
+                            <form id="frm-logout" action="{{ route('logout') }}" method="POST"
+                                            style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                            <button  onclick="event.preventDefault(); document.getElementById('frm-logout').submit();" class="squircle bg-danger border-0 justify-content-center">
+                                <i class="fe fe-log-out fe-32 align-self-center text-white"></i>
+                            </button>
+                            <p>الخروج</p>
                         </div>
                     </div>
                 </div>
@@ -258,6 +311,8 @@ font-family: 'Droid Arabic Kufi', serif;
                 })
             })
         $(".select2").select2()
+
+        $('.lod').addClass('none')
         })
 
     </script>

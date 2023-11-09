@@ -66,3 +66,5 @@ Route::controller(UsersController::class)->group(function () {
         Route::get('unactive/user/{id}', "unactive")->name('unactive');
     });
 });
+
+Route::post('check-date',[TodolistController::class,'checkDate'])->name('check_date');

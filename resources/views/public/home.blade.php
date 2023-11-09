@@ -9,19 +9,47 @@
     <link rel="stylesheet" href="{{ URL::asset('css/jquery.timepicker.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/quill.snow.css') }}">
 @endsection
+@section('style')
+    <style>
+        .fc-center {
+            text-align: center !important;
+            margin-bottom: 0 !important;
+            padding: 10px;
+            background-color: #17629b
+        }
+        .fc-center *{
+            color: white
+        }
+        .fc-right{
+            display: none;
+        }
+        .fc-day-grid-container{
+            height: 340px !important;
+            background-color: white;
+            color: #17629b;
+        }
+        .fc-toolbar{
+            margin-bottom: 0 !important;
+        }
+        .ava {
+            bottom: 15px;
+            left:15px;
+            height: 60px;
+            width: 60px;
+            z-index: 10;
+            text-align: center
+        }
+    
+    </style>
+@endsection
 @section('content')
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-12">
                 <div class="row align-items-center my-3">
-                    <div class="col">
-                        <h2 class="page-title">Calendar</h2>
-                    </div>
                     <div class="col-auto">
-                        <button type="button" class="btn" data-toggle="modal" data-target=".modal-calendar"><span
-                                class="fe fe-filter fe-16 text-muted"></span></button>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eventModal"><span
-                                class="fe fe-plus fe-16 mr-3"></span>New Event</button>
+                        <button type="button" class="btn btn-primary position-fixed ava" style="" data-toggle="modal" data-target="#eventModal"><span
+                                class="fe fe-plus fe-16"></span></button>
                     </div>
                 </div>
                 <div id='calendar'></div>
@@ -189,7 +217,7 @@
                                         </div>
                                     </div>
                                 </form>
-                                <form id="form-conference">
+                                <form id="form-conference" style="display: none">
                                     @csrf
                                     <input type="hidden" name="type" value="conference">
                                     <div class="form-group">
@@ -229,7 +257,7 @@
                                         
                                     </div>
                                 </form>
-                                <form id="form-discussion">
+                                <form id="form-discussion" style="display: none">
                                     @csrf
                                     <input type="hidden" name="type" value="discussion">
                                     <div class="form-group">
@@ -269,7 +297,7 @@
                                         
                                     </div>
                                 </form>
-                                <form id="form-meeting">
+                                <form id="form-meeting" style="display: none">
                                     @csrf
                                     <input type="hidden" name="type" value="meeting">
                                     <div class="form-group">
@@ -309,7 +337,7 @@
                                         
                                     </div>
                                 </form>
-                                <form id="form-activety">
+                                <form id="form-activety" style="display: none">
                                     @csrf
                                     <input type="hidden" name="type" value="activety">
                                     <div class="form-group">
@@ -401,7 +429,7 @@
                     data = res.data
                     Swal.fire(
                         `${data.title}`,
-                        `${data.note} <br> ${data.start} - ${data.end}`,
+                        `${data.note} <br> ${data.start} <br> ${data.end} `,
                         'info'
                         )
                 })
@@ -442,9 +470,9 @@
     </script>
     <script>
         $(function() {
-            $("#save-time").click(() => {
+            function save(form_i){
                 $(".error-todo").html("")
-                var form = $('.nav-link.active').data('form')
+                var form = form_i
                 console.log(form)
                 axios.post("/api/save", $(`#${form}`).serialize()).then((res) => {
                    console.log(res)
@@ -466,7 +494,7 @@
                         }
                     }
                 })
-            })
+            }
 
             $(".nav-link").click(function(){
                 name = $(this).data('form')
@@ -474,6 +502,41 @@
                 $(`#${name}`).show()
                 $(this).parent().siblings().children().removeClass('active');
                 $(this).addClass('active')
+            })
+
+            $('#save-time').click(function(){
+                $(".error-todo").html("")
+                var form = $('.nav-link.active').data('form')
+                axios.post("{{ route('check_date') }}",
+                $(`#${form}`).serialize()
+                ).then((res)=>{
+                    // console.log(res)
+                    text = ''
+                    for(i = 0;i<res.data.length;i++){
+                        text += res.data[i].title + ' - '+res.data[i].start + "\n"
+                    }
+                    Swal.fire({
+                    title: "هناك تعارض في المواعيد?",
+                    text: text,
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "حفظ!",
+                    cancelButtonText:'الغاء'
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        save(form);
+                    }
+                    });
+                }).catch((error)=>{
+                    var error = res.response.data.errors
+                    for (let x in error) {
+                        for (let y of error[x]) {
+                            $(".error-todo").append(y + "<br>")
+                        }
+                    }
+                })
             })
         })
     </script>

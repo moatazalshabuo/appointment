@@ -21,6 +21,7 @@
 
 
                 <div class="row my-4">
+                    @isset($todo[0]->id)
                     @foreach ($todo as $item)
                             <div class="col-md-4">
                                 <div class="card mb-4 shadow" style="position: relative">
@@ -77,6 +78,11 @@
                                 </div> <!-- .card -->
                             </div> <!-- .col-md-->
                     @endforeach
+                    @else
+                    <div class="col-12 text-center">
+                        لا يوجد مواعيد
+                    </div>
+                    @endisset
                 </div> <!-- .row-->
 
 
@@ -224,7 +230,7 @@
                 })
             })
 
-            $("#save-event").click(() => {
+            function save(){
                 $(".error-todo").html("")
                 axios.post("{{ route('edit.event') }}", $("#form-todo").serialize()).then((res) => {
                     Swal.fire({
@@ -245,8 +251,41 @@
                         }
                     }
                 })
-            })
+            }
 
+            $('#save-event').click(()=>{
+                $(".error-todo").html("")
+               
+                axios.post("{{ route('check_date') }}",
+                $("#form-todo").serialize()).then((res)=>{
+                    // console.log(res)
+                    text = ''
+                    for(i = 0;i<res.data.length;i++){
+                        text += res.data[i].title + ' - '+res.data[i].start + "\n"
+                    }
+                    Swal.fire({
+                    title: "هناك تعارض في المواعيد?",
+                    text: text,
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "حفظ!",
+                    cancelButtonText:'الغاء'
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        save(form);
+                    }
+                    });
+                }).catch((error)=>{
+                    var error = error.response.data.errors
+                    for (let x in error) {
+                        for (let y of error[x]) {
+                            $(".error-todo").append(y + "<br>")
+                        }
+                    }
+                })
+            })
             $(".delete").click(function(){
                 var id = $(this).data('delete')
 
@@ -277,6 +316,8 @@
                     }
                 })
             })
+
+            
         })
     </script>
 @endsection

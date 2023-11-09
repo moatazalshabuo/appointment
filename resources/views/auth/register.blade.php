@@ -1,5 +1,19 @@
 @extends('layouts.app')
-
+@section('style')
+    <style>
+ 
+        input {
+            outline: 0;
+            border-width: 0 0 2px !important;
+            border-color: #1b68ff !important
+            }
+            input:focus {
+            border-color: green !important;
+            outline: 1px dotted #000 !important;
+            box-shadow: 0px !important;
+            }
+    </style>
+@endsection
 @section('content')
 <div class="container m-3">
     <div class="row align-items-center h-100">
@@ -115,7 +129,7 @@
                 <div class="">
                     <div class="">
                         <button class="btn btn-lg btn-primary btn-block" type="submit">
-                            {{ __('Register') }}
+                            تسجيل
                         </button>
                     </div>
                 </div>

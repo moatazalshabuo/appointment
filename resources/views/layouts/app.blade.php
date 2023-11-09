@@ -24,6 +24,22 @@
     <link rel="stylesheet" href="{{ URL::asset('css/app-light.css') }}" id="lightTheme">
     <link rel="stylesheet" href="{{ URL::asset('css/app-dark.css') }}" id="darkTheme" disabled>
     @yield('style')
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Changa:400,700&subset=arabic');
+
+/* font-family: 'Lateef', serif; */
+        body * {
+            font-family: 'Changa';
+
+        }
+        .btn-primay{
+            color: #fff;
+            background-color: #17629b;
+        }
+        .text-primary{
+            color:#17629b
+        }
+    </style>
 </head>
 
 <body class="light rtl">

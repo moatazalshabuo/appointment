@@ -1,31 +1,35 @@
-<nav class="topnav navbar navbar-light">
-    <button type="button" class="navbar-toggler text-muted mt-2 p-0 mr-3 collapseSidebar">
+<div style="background-image: url({{ asset('assets/bg.jpg') }});background-size: cover;padding-top: 15px;">
+    <h4 class="text-white m-2">مرحبا بك !</h4>
+    <nav class="topnav navbar navbar-light pt-0" >
+    {{-- <button type="button" class="navbar-toggler text-muted mt-2 p-0 mr-3 collapseSidebar">
         <i class="fe fe-menu navbar-toggler-icon"></i>
-    </button>
-
+    </button> --}}
+    <span class="text-white">
+        <i class="fe fe-user m-1"></i>
+        {{ auth()->user()->name }}
+    </span>
     <ul class="nav">
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link text-muted my-2" href="#" id="modeSwitcher" data-mode="light">
                 <i class="fe fe-sun fe-16"></i>
             </a>
-        </li>
+        </li> --}}
         <li class="nav-item">
             <a class="nav-link text-muted my-2" href="./#" data-toggle="modal" data-target=".modal-shortcut">
                 <span class="fe fe-grid fe-16"></span>
 
             </a>
         </li>
-        <li class="nav-item nav-notif">
+        {{-- <li class="nav-item nav-notif">
             <a class="nav-link text-muted my-2" style="position: relative" href="./#" data-toggle="modal"
                 data-target=".modal-notif">
                 <span class="fe fe-bell fe-16"></span>
                 <span id="count_noty" class="badge badge-success text-white"
                     style="position: absolute;left:12px;top: -3px;">
                 </span>
-                {{-- <span class="dot dot-md bg-success"></span> --}}
             </a>
-        </li>
-        <li class="nav-item dropdown">
+        </li> --}}
+        {{-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-muted pr-0" href="#" id="navbarDropdownMenuLink"
                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="bg-secondary rounded-circle p-2 text-center" style="
@@ -36,6 +40,7 @@
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
             </div>
-        </li>
+        </li> --}}
     </ul>
 </nav>
+</div>

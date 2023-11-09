@@ -110,10 +110,10 @@
                                             onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
                                             Logout
                                         </a>
-                                        <form id="frm-logout" action="{{ route('logout') }}" method="POST"
+                                        {{-- <form id="frm-logout" action="{{ route('logout') }}" method="POST"
                                             style="display: none;">
                                             {{ csrf_field() }}
-                                        </form>
+                                        </form> --}}
                                     </li>
                                 </ul>
                             </ul>

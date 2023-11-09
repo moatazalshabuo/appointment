@@ -65,13 +65,15 @@ class TodolistController extends Controller
         } else{
             $request->validate([
                 'title' => ["required", "string", "max:125"],
-                "start" => ["required"],
-                "end" => ['required'],
+                "start" => ["required",'date','after:'.date('Y-m-d H:i')],
+                "end" => 'required|date|after:start',
 
             ], [
                 'title.required' => 'يرجى ادخال العنوان',
                 "start.required" => "تاريخ البداء",
                 "end.required" => "تاريخ الانتهاء",
+                'end.after'=>' نهاية موعد  لايمكن ان يكون قبل موعد البداية',
+                'start.after'=>'بداية موعد لا يمكن ان يكون قبل الوقت الحالي'
             ]);
             $code = random_int(0, 100000000);
             TodoList::create([
@@ -177,13 +179,14 @@ class TodolistController extends Controller
             
             $request->validate([
                 'title' => ["required", "string", "max:125"],
-                "start" => ["required"],
-                "end" => ['required'],
-
+                "start" => ["required",'date','after:'.date('Y-m-d H:i')],
+                "end" => 'required|date|after:start',
             ], [
                 'title.required' => 'يرجى ادخال العنوان',
                 "start.required" => "تاريخ البداء",
                 "end.required" => "تاريخ الانتهاء",
+                'end.after'=>' نهاية موعد  لايمكن ان يكون قبل موعد البداية',
+                'start.after'=>'بداية موعد لا يمكن ان يكون قبل الوقت الحالي'
             ]);
 
             $code = $request->code;
@@ -209,5 +212,23 @@ class TodolistController extends Controller
     public function delete($id)
     {
         TodoList::where("code", $id)->delete();
+    }
+
+    public function checkDate(Request $request){
+        $request->validate([
+            'title' => ["required", "string", "max:125"],
+            "start" => ["required",'date','after:'.date('Y-m-d H:i')],
+            "end" => 'required|date|after:start',
+
+        ], [
+            'title.required' => 'يرجى ادخال العنوان',
+            "start.required" => "تاريخ البداء",
+            "end.required" => "تاريخ الانتهاء",
+            'end.after'=>' نهاية موعد  لايمكن ان يكون قبل موعد البداية',
+            'start.after'=>'بداية موعد لا يمكن ان يكون قبل الوقت الحالي'
+        ]);
+        $start = $request->start;
+        $todo = TodoList::where('start','<',$start)->where('end','>',$start)->get();
+        return response()->json($todo);
     }
 }
