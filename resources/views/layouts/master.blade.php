@@ -231,6 +231,13 @@
                             </div>
                             <p>ادارة الانشطة</p>
                         </a>
+                        
+                        <a class="col-6 text-center" href="{{ route('about') }}">
+                            <div class="squircle bg-info justify-content-center">
+                                <i class="fe fe-info fe-32 align-self-center text-white"></i>
+                            </div>
+                            <p>حول التطبيق</p>
+                        </a>
                         <div class="col-6 text-center">
                             <form id="frm-logout" action="{{ route('logout') }}" method="POST"
                                             style="display: none;">

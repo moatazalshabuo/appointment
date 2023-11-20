@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use PhpParser\Node\Expr\FuncCall;
+use Spatie\FlareClient\View;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,3 +69,7 @@ Route::controller(UsersController::class)->group(function () {
 });
 
 Route::post('check-date',[TodolistController::class,'checkDate'])->name('check_date');
+
+Route::get('about',function(){
+    return view('public/about');
+})->name('about');

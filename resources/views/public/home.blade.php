@@ -41,6 +41,7 @@
         }
     
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
 @endsection
 @section('content')
     <div class="container-fluid">
@@ -131,7 +132,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
 
-                                <h5 class="modal-title" id="varyModalLabel">اضافة موعد</h5>
+                                {{-- <h5 class="modal-title" id="varyModalLabel">اضافة موعد</h5> --}}
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -141,19 +142,19 @@
                                 <div class="block">
                                     <ul class="nav nav-pills nav-fill">
                                         <li class="nav-item">
-                                          <a class="nav-link active" aria-current="page" href="#" data-form='form-todo'>محاضرة </a>
+                                          <a class="nav-link active" aria-current="page" href="#" data-form='form-todo'>  <i class="fe fe-calendar"></i> محاضرة </a>
                                         </li>
                                         <li class="nav-item">
-                                          <a class="nav-link" href="#" data-form='form-conference'>مؤتمر</a>
+                                          <a class="nav-link" href="#" data-form='form-conference'><i class="fe fe-calendar"></i> مؤتمر</a>
                                         </li>
                                         <li class="nav-item">
-                                          <a class="nav-link" data-form="form-discussion">مناقشة بحث</a>
+                                          <a class="nav-link" data-form="form-discussion"><i class="fe fe-calendar"></i> مناقشة بحث</a>
                                         </li>
-                                        <li class="nav-item">
-                                          <a class="nav-link " data-form="form-meeting">اجتماع</a>
+                                        <li class="nav-item ">
+                                          <a class="nav-link " data-form="form-meeting"><i class="fe fe-calendar"></i> اجتماع</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link " data-form="form-activety">نشاط</a>
+                                        <li class="nav-item" >
+                                            <a class="nav-link " data-form="form-activety"><i class="fe fe-calendar"></i> نشاط</a>
                                           </li>
                                       </ul>
                                 </div>
