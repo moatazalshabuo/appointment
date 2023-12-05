@@ -125,42 +125,7 @@
                 <div class="modal-body">
                     <div id="noty-list" class="list-group list-group-flush my-n3">
 
-                        <div class="list-group-item bg-transparent">
-                            <div class="row align-items-center">
-                                <div class="col-auto">
-                                    <span class="fe fe-download fe-24"></span>
-                                </div>
-                                <div class="col">
-                                    <small><strong>Widgets are updated successfull</strong></small>
-                                    <div class="my-0 text-muted small">Just create new layout Index, form, table</div>
-                                    <small class="badge badge-pill badge-light text-muted">2m ago</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="list-group-item bg-transparent">
-                            <div class="row align-items-center">
-                                <div class="col-auto">
-                                    <span class="fe fe-inbox fe-24"></span>
-                                </div>
-                                <div class="col">
-                                    <small><strong>Notifications have been sent</strong></small>
-                                    <div class="my-0 text-muted small">Fusce dapibus, tellus ac cursus commodo</div>
-                                    <small class="badge badge-pill badge-light text-muted">30m ago</small>
-                                </div>
-                            </div> <!-- / .row -->
-                        </div>
-                        <div class="list-group-item bg-transparent">
-                            <div class="row align-items-center">
-                                <div class="col-auto">
-                                    <span class="fe fe-link fe-24"></span>
-                                </div>
-                                <div class="col">
-                                    <small><strong>Link was attached to menu</strong></small>
-                                    <div class="my-0 text-muted small">New layout has been attached to the menu</div>
-                                    <small class="badge badge-pill badge-light text-muted">1h ago</small>
-                                </div>
-                            </div>
-                        </div> <!-- / .row -->
+                       
                     </div> <!-- / .list-group -->
                 </div>
                 <div class="modal-footer">
@@ -232,12 +197,12 @@
                             <p>ادارة الانشطة</p>
                         </a>
                         
-                        <a class="col-6 text-center" href="{{ route('about') }}">
+                        {{-- <a class="col-6 text-center" href="{{ route('about') }}">
                             <div class="squircle bg-info justify-content-center">
                                 <i class="fe fe-info fe-32 align-self-center text-white"></i>
                             </div>
                             <p>حول التطبيق</p>
-                        </a>
+                        </a> --}}
                         <div class="col-6 text-center">
                             <form id="frm-logout" action="{{ route('logout') }}" method="POST"
                                             style="display: none;">

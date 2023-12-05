@@ -105,12 +105,12 @@
                         <div class="form-group">
                             <label for="eventTitle" class="col-form-label">المادة</label>
                             <input type="text" class="form-control" name="title" id="title"
-                                placeholder="Add event title">
+                                placeholder="">
                                 <input type="hidden" name="code" id="code">
                         </div>
                         <div class="form-group">
                             <label for="eventNote" class="col-form-label">المكان</label>
-                            <textarea class="form-control" id="note" name="note" placeholder="Add some note for your event"></textarea>
+                            <textarea class="form-control" id="note" name="note" placeholder=""></textarea>
                         </div>
                         <div class="form-group">
                             <select class="form-control " id='days' name="days[]">
@@ -222,7 +222,6 @@
 
 
 @section('script')
-
     <script>
         $(function() {
             $(".edit").click(function() {
@@ -237,13 +236,11 @@
                     $("#num_repet").val(data.num_repet)
                     $("#start_study").val(data.start_study)
                     $('#days').val(data.days)
-
                     $("#eventModal").modal("show")
                 }).catch((res) => {
                     console.log(res)
                 })
             })
-
             $("#save-event").click(() => {
                 $(".error-todo").html("")
                 axios.post("{{ route('edit.event') }}", $("#form-todo").serialize()).then((res) => {

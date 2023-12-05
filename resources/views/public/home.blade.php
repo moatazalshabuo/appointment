@@ -51,6 +51,10 @@
                     <div class="col-auto">
                         <button type="button" class="btn btn-primary position-fixed ava" style="" data-toggle="modal" data-target="#eventModal"><span
                                 class="fe fe-plus fe-16"></span></button>
+                        <a href="{{ route('about') }}" class="btn btn-info position-fixed ava" style=" right:10px;" ><span
+                                    class="fe fe-info fe-16"></span>
+                                حول
+                                </a>
                     </div>
                 </div>
                 <div id='calendar'></div>
@@ -142,11 +146,11 @@
                                 <div class="block">
                                     <ul class="nav nav-pills nav-fill">
                                         <li class="nav-item">
-                                          <a class="nav-link active" aria-current="page" href="#" data-form='form-todo'>  <i class="fe fe-calendar"></i> محاضرة </a>
+                                          <a class="nav-link active" aria-current="page" data-form='form-todo'>  <i class="fe fe-calendar"></i> محاضرة </a>
                                         </li>
                                         <li class="nav-item">
-                                          <a class="nav-link" href="#" data-form='form-conference'><i class="fe fe-calendar"></i> مؤتمر</a>
-                                        </li>
+                                            <a class="nav-link" data-form='form-conference'><i class="fe fe-calendar"></i> مؤتمر</a>
+                                          </li>
                                         <li class="nav-item">
                                           <a class="nav-link" data-form="form-discussion"><i class="fe fe-calendar"></i> مناقشة بحث</a>
                                         </li>
@@ -165,11 +169,11 @@
                                     <div class="form-group">
                                         <label for="eventTitle" class="col-form-label">المادة</label>
                                         <input type="text" class="form-control" name="title" id="eventTitle"
-                                            placeholder="Add event title">
+                                            placeholder="">
                                     </div>
                                     <div class="form-group">
                                         <label for="eventNote" class="col-form-label">المكان</label>
-                                        <textarea class="form-control" id="eventNote" name="note" placeholder="Add some note for your event"></textarea>
+                                        <textarea class="form-control" id="eventNote" name="note" placeholder=""></textarea>
                                     </div>
                                     <div class="form-group">
                                         <select class="form-control select2" name="days[]">
@@ -224,11 +228,11 @@
                                     <div class="form-group">
                                         <label for="eventTitle" class="col-form-label">عنوان المؤتمر</label>
                                         <input type="text" class="form-control" name="title" id="eventTitle"
-                                            placeholder="Add event title">
+                                            placeholder="">
                                     </div>
                                     <div class="form-group">
                                         <label for="eventNote" class="col-form-label">المكان</label>
-                                        <textarea class="form-control" id="eventNote" name="note" placeholder="Add some note for your event"></textarea>
+                                        <textarea class="form-control" id="eventNote" name="note" placeholder=""></textarea>
                                     </div>
                                 
                                     <label for="date-input1">موعد المؤتمر </label>
@@ -264,11 +268,11 @@
                                     <div class="form-group">
                                         <label for="eventTitle" class="col-form-label">عنوان البحث</label>
                                         <input type="text" class="form-control" name="title" id="eventTitle"
-                                            placeholder="Add event title">
+                                            placeholder="">
                                     </div>
                                     <div class="form-group">
                                         <label for="eventNote" class="col-form-label">المكان</label>
-                                        <textarea class="form-control" id="eventNote" name="note" placeholder="Add some note for your event"></textarea>
+                                        <textarea class="form-control" id="eventNote" name="note" placeholder=""></textarea>
                                     </div>
                                 
                                     <label for="date-input1">موعد البحث </label>
@@ -304,11 +308,11 @@
                                     <div class="form-group">
                                         <label for="eventTitle" class="col-form-label">عنوان الاجتماع</label>
                                         <input type="text" class="form-control" name="title" id="eventTitle"
-                                            placeholder="Add event title">
+                                            placeholder="">
                                     </div>
                                     <div class="form-group">
                                         <label for="eventNote" class="col-form-label">المكان</label>
-                                        <textarea class="form-control" id="eventNote" name="note" placeholder="Add some note for your event"></textarea>
+                                        <textarea class="form-control" id="eventNote" name="note" placeholder=""></textarea>
                                     </div>
                                 
                                     <label for="date-input1">موعد الاجتماع </label>
@@ -344,11 +348,11 @@
                                     <div class="form-group">
                                         <label for="eventTitle" class="col-form-label">عنوان </label>
                                         <input type="text" class="form-control" name="title" id="eventTitle"
-                                            placeholder="Add event title">
+                                            placeholder="">
                                     </div>
                                     <div class="form-group">
                                         <label for="eventNote" class="col-form-label">المكان</label>
-                                        <textarea class="form-control" id="eventNote" name="note" placeholder="Add some note for your event"></textarea>
+                                        <textarea class="form-control" id="eventNote" name="note" placeholder=""></textarea>
                                     </div>
                                 
                                     <label for="date-input1">موعد النشاط </label>
