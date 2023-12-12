@@ -512,6 +512,7 @@
             $('#save-time').click(function(){
                 $(".error-todo").html("")
                 var form = $('.nav-link.active').data('form')
+                if(form != "form-todo"){
                 axios.post("{{ route('check_date') }}",
                 $(`#${form}`).serialize()
                 ).then((res)=>{
@@ -542,6 +543,9 @@
                         }
                     }
                 })
+                }else{
+                    save(form);
+                }
             })
         })
     </script>

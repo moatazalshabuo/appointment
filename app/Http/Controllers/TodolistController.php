@@ -126,8 +126,8 @@ class TodolistController extends Controller
             
             $request->validate([
                 'title' => ["required", "string", "max:125"],
-                "start" => ["required"],
-                "end" => ['required'],
+                "start" => ["required",'date'],
+                "end" => ['required','date','after:start'],
                 "num_repet" => ['required'],
                 'start_study' => ['required'],
                 'days' => ['required']
@@ -138,6 +138,7 @@ class TodolistController extends Controller
                 "num_repet.required" => "يرجى ادخال عدد مرات التكرار",
                 'start_study' => 'يرجى تحديد موعد بداية الدراسة',
                 'days[]' => 'يرجى تحديد ايام الدراسة',
+            'end.after'=>' نهاية موعد  لايمكن ان يكون قبل موعد البداية',
             ]);
             $code = $request->code;
 
@@ -215,6 +216,7 @@ class TodolistController extends Controller
     }
 
     public function checkDate(Request $request){
+       
         $request->validate([
             'title' => ["required", "string", "max:125"],
             "start" => ["required",'date','after:'.date('Y-m-d H:i')],
@@ -229,6 +231,7 @@ class TodolistController extends Controller
         ]);
         $start = $request->start;
         $todo = TodoList::where('start','<',$start)->where('end','>',$start)->get();
+        
         return response()->json($todo);
     }
 }
