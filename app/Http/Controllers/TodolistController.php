@@ -126,8 +126,8 @@ class TodolistController extends Controller
             
             $request->validate([
                 'title' => ["required", "string", "max:125"],
-                "start" => ["required",'date'],
-                "end" => ['required','date','after:start'],
+                "start" => ["required",'date_format:H:i'],
+                "end" => ['required','date_format:H:i','after:start'],
                 "num_repet" => ['required'],
                 'start_study' => ['required'],
                 'days' => ['required']

@@ -25,8 +25,12 @@
     <link rel="stylesheet" href="{{ URL::asset('css/app-light.css') }}" id="lightTheme">
     <link rel="stylesheet" href="{{ URL::asset('css/app-dark.css') }}" id="darkTheme" disabled>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://twemoji.maxcdn.com/v/13.0.1/twemoji-awesome.css">
+
     <style>
      @import url('https://fonts.googleapis.com/css?family=Changa:400,700&subset=arabic');
+     
 
 /* font-family: 'Lateef', serif; */
         body * {
@@ -145,7 +149,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body px-5">
+                <div class="modal-body px-5" style="overflow-y: scroll;">
                     <div class="row align-items-center">
                         <a class="col-6 text-center" href="{{ route('home') }}">
                             <div class="squircle bg-success justify-content-center">
@@ -164,13 +168,15 @@
                     <div class="row align-items-center">
                         <a class="col-6 text-center" href="{{ route('appointemt') }}">
                             <div class="squircle bg-primary justify-content-center">
-                                <i class="fe fe-calendar fe-32 align-self-center text-white"></i>
+                                {{-- <i class="fe fe-calendar fe-32 align-self-center text-white"></i> --}}
+                                {{-- <i class="material-icons">class</i> --}}
+                                <i class="fas fa-chalkboard-teacher fe-32 align-self-center"></i>
                             </div>
                             <p>ادارة المحاضرات</p>
                         </a>
                         <a class="col-6 text-center" href="{{ route('appointemt-type','conference') }}">
                             <div class="squircle bg-primary justify-content-center">
-                                <i class="fe fe-calendar fe-32 align-self-center text-white"></i>
+                                <i class="fe fe-users fe-32 align-self-center text-white"></i>
                             </div>
                             <p>ادارة المؤتمرات</p>
                         </a>
@@ -178,23 +184,39 @@
                     <div class="row align-items-center">
                         <a class="col-6 text-center"  href="{{ route('appointemt-type','discussion') }}">
                             <div class="squircle bg-primary justify-content-center">
-                                <i class="fe fe-calendar fe-32 align-self-center text-white"></i>
+                                {{-- <i class="fe fe-calendar fe-32 align-self-center text-white"></i> --}}
+                                <i class="material-icons fe-32 align-self-center" style="font-size: 32px">class</i>
                             </div>
                             <p>ادارة المناقشات</p>
                         </a>
                         <a class="col-6 text-center" href="{{ route('appointemt-type','meeting') }}">
                             <div class="squircle bg-primary justify-content-center">
-                                <i class="fe fe-calendar fe-32 align-self-center text-white"></i>
+                                <i class="fa-solid fa-users fe-32 align-self-center"></i>
                             </div>
                             <p>ادارة الاجتماعات</p>
                         </a>
                     </div>
                     <div class="row align-items-center">
+                        <a class="col-6 text-center"  href="{{ route('appointemt-type','A-seminar') }}">
+                            <div class="squircle bg-primary justify-content-center">
+                                <i class="fa-solid fa-chalkboard fe-32 align-self-center"></i>
+                            </div>
+                            <p>ادارة الندوات</p>
+                        </a>
+                        <a class="col-6 text-center" href="{{ route('appointemt-type','scientific-paper') }}">
+                            <div class="squircle bg-primary justify-content-center">
+                                <i class="fa-solid fa-file-circle-check fe-32 align-self-center"></i>
+                            </div>
+                            <p>ادارة الاوراق العلمية</p>
+                        </a>
+                    </div>
+                    <div class="row align-items-center">
                         <a class="col-6 text-center" href="{{ route('appointemt-type','activety') }}">
                             <div class="squircle bg-primary justify-content-center">
-                                <i class="fe fe-calendar fe-32 align-self-center text-white"></i>
+                                {{-- <i class="fe fe-calendar fe-32 align-self-center text-white"></i> --}}
+                                <i class="fa-regular fa-note-sticky fe-32 align-self-center"></i>
                             </div>
-                            <p>ادارة الانشطة</p>
+                            <p>ادارة الامتحانات</p>
                         </a>
                         
                         {{-- <a class="col-6 text-center" href="{{ route('about') }}">

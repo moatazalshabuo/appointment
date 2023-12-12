@@ -39,6 +39,10 @@
             z-index: 10;
             text-align: center
         }
+        .bg-primary{
+            background-color: #17629b !important;
+            color: white !important;
+        }
     
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
@@ -86,19 +90,19 @@
                                         <div class="form-group col-md-6">
                                             <label for="date-input1">بداية الوقت</label>
                                             <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text" id="button-addon-date"><span
+                                                <div class="input-group-prepend ">
+                                                    <div class="input-group-text  bg-primary" id="button-addon-date"><span
                                                             class="fe fe-calendar fe-16"></span></div>
                                                 </div>
                                                 <input type="datetime-local" class="form-control drgpicker" name="start"
-                                                    id="drgpicker-start">
+                                                    >
                                             </div>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="startDate">نهاية الوقت</label>
                                             <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text" id="button-addon-time"><span
+                                                <div class="input-group-prepend ">
+                                                    <div class="input-group-text  bg-primary" id="button-addon-time"><span
                                                             class="fe fe-clock fe-16"></span></div>
                                                 </div>
                                                 <input type="datetime-local" class="form-control time-input" name="end"
@@ -134,7 +138,7 @@
                     aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            <div class="modal-header">
+                            <div class="modal-header" style="background-image: url({{ asset('assets/bg.jpg') }});background-size: cover;padding-top: 15px;">
 
                                 {{-- <h5 class="modal-title" id="varyModalLabel">اضافة موعد</h5> --}}
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -144,9 +148,12 @@
                             </div>
                             <div class="modal-body p-4">
                                 <div class="block">
-                                    <ul class="nav nav-pills nav-fill">
+                                    {{-- <ul class="nav nav-pills nav-fill">
                                         <li class="nav-item">
-                                          <a class="nav-link active" aria-current="page" data-form='form-todo'>  <i class="fe fe-calendar"></i> محاضرة </a>
+                                          <a class="nav-link active" aria-current="page" data-form='form-todo'>  <svg width="20" height="20">
+                                            <!-- Use the 'image' tag to include the SVG file -->
+                                            <image href="{{ asset('svg/class-scene-svgrepo-com.svg')}}" width="20" height="20" />
+                                        </svg> محاضرة </a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" data-form='form-conference'><i class="fe fe-calendar"></i> مؤتمر</a>
@@ -160,9 +167,18 @@
                                         <li class="nav-item" >
                                             <a class="nav-link " data-form="form-activety"><i class="fe fe-calendar"></i> نشاط</a>
                                           </li>
-                                      </ul>
+                                      </ul> --}}
+                                      <select class="form-control overflow-hidden w-75 m-auto" id="chose_form">
+                                        <option value="form-todo">محاضرة</option>
+                                        <option value="form-conference">مؤتمر</option>
+                                        <option value="form-discussion"> مناقشة بحث</option>
+                                        <option value="form-meeting">اجتماع</option>
+                                        <option value="form-activety">امتحان</option>
+                                        <option value="form-A-seminar">ندوة</option>
+                                        <option value="form-scientific-paper">تسليم ورقة علمية</option>
+                                    </select>
                                 </div>
-                                <div class="text-danger error-todo"></div>
+                                
                                 <form id="form-todo" class="lutcuer">
                                     @csrf
                                     <input type="hidden" name="type" value="lutcer">
@@ -194,23 +210,23 @@
                                         <div class="form-group col-md-6">
                                             <label for="date-input1">من </label>
                                             <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text" id="button-addon-date"><span
+                                                <div class="input-group-prepend ">
+                                                    <div class="input-group-text  bg-primary" id="button-addon-date"><span
                                                             class="fe fe-calendar fe-16"></span></div>
                                                 </div>
                                                 <input type="time" class="form-control drgpicker" name="start"
-                                                    id="drgpicker-start">
+                                                    id="startTime">
                                             </div>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="startDate">الى</label>
                                             <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text" id="button-addon-time">
+                                                <div class="input-group-prepend ">
+                                                    <div class="input-group-text  bg-primary" id="button-addon-time">
                                                         <span class="fe fe-clock fe-16"></span>
                                                     </div>
                                                 </div>
-                                                <input type="time" class="form-control time-input" name="end" id="start-time">
+                                                <input type="time" class="form-control time-input" name="end" id="endTime">
                                             </div>
                                         </div>
                                         <div class="form-row">
@@ -240,19 +256,19 @@
                                         <div class="form-group col-md-6">
                                             <label for="date-input1">من </label>
                                             <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text" id="button-addon-date"><span
+                                                <div class="input-group-prepend ">
+                                                    <div class="input-group-text  bg-primary" id="button-addon-date"><span
                                                             class="fe fe-calendar fe-16"></span></div>
                                                 </div>
                                                 <input type="datetime-local" class="form-control drgpicker" name="start"
-                                                    id="drgpicker-start">
+                                                    >
                                             </div>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="startDate">الى</label>
                                             <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text" id="button-addon-time">
+                                                <div class="input-group-prepend ">
+                                                    <div class="input-group-text  bg-primary" id="button-addon-time">
                                                         <span class="fe fe-clock fe-16"></span>
                                                     </div>
                                                 </div>
@@ -280,19 +296,19 @@
                                         <div class="form-group col-md-6">
                                             <label for="date-input1">من </label>
                                             <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text" id="button-addon-date"><span
+                                                <div class="input-group-prepend ">
+                                                    <div class="input-group-text  bg-primary" id="button-addon-date"><span
                                                             class="fe fe-calendar fe-16"></span></div>
                                                 </div>
                                                 <input type="datetime-local" class="form-control drgpicker" name="start"
-                                                    id="drgpicker-start">
+                                                    >
                                             </div>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="startDate">الى</label>
                                             <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text" id="button-addon-time">
+                                                <div class="input-group-prepend ">
+                                                    <div class="input-group-text  bg-primary" id="button-addon-time">
                                                         <span class="fe fe-clock fe-16"></span>
                                                     </div>
                                                 </div>
@@ -320,19 +336,19 @@
                                         <div class="form-group col-md-6">
                                             <label for="date-input1">من </label>
                                             <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text" id="button-addon-date"><span
+                                                <div class="input-group-prepend ">
+                                                    <div class="input-group-text  bg-primary" id="button-addon-date"><span
                                                             class="fe fe-calendar fe-16"></span></div>
                                                 </div>
                                                 <input type="datetime-local" class="form-control drgpicker" name="start"
-                                                    id="drgpicker-start">
+                                                    >
                                             </div>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="startDate">الى</label>
                                             <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text" id="button-addon-time">
+                                                <div class="input-group-prepend ">
+                                                    <div class="input-group-text  bg-primary" id="button-addon-time">
                                                         <span class="fe fe-clock fe-16"></span>
                                                     </div>
                                                 </div>
@@ -346,7 +362,7 @@
                                     @csrf
                                     <input type="hidden" name="type" value="activety">
                                     <div class="form-group">
-                                        <label for="eventTitle" class="col-form-label">عنوان </label>
+                                        <label for="eventTitle" class="col-form-label">اسم المادة </label>
                                         <input type="text" class="form-control" name="title" id="eventTitle"
                                             placeholder="">
                                     </div>
@@ -355,24 +371,24 @@
                                         <textarea class="form-control" id="eventNote" name="note" placeholder=""></textarea>
                                     </div>
                                 
-                                    <label for="date-input1">موعد النشاط </label>
+                                    <label for="date-input1">موعد الامتحان </label>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="date-input1">من </label>
                                             <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text" id="button-addon-date"><span
+                                                <div class="input-group-prepend ">
+                                                    <div class="input-group-text  bg-primary" id="button-addon-date"><span
                                                             class="fe fe-calendar fe-16"></span></div>
                                                 </div>
                                                 <input type="datetime-local" class="form-control drgpicker" name="start"
-                                                    id="drgpicker-start">
+                                                    >
                                             </div>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="startDate">الى</label>
                                             <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text" id="button-addon-time">
+                                                <div class="input-group-prepend ">
+                                                    <div class="input-group-text  bg-primary" id="button-addon-time">
                                                         <span class="fe fe-clock fe-16"></span>
                                                     </div>
                                                 </div>
@@ -382,6 +398,87 @@
                                         
                                     </div>
                                 </form>
+                                <form id="form-A-seminar" style="display: none">
+                                    @csrf
+                                    <input type="hidden" name="type" value="A-seminar">
+                                    <div class="form-group">
+                                        <label for="eventTitle" class="col-form-label">عنوان الندوة </label>
+                                        <input type="text" class="form-control" name="title" id="eventTitle"
+                                            placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="eventNote" class="col-form-label">المكان</label>
+                                        <textarea class="form-control" id="eventNote" name="note" placeholder=""></textarea>
+                                    </div>
+                                
+                                    <label for="date-input1">موعد الندوة </label>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="date-input1">من </label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend ">
+                                                    <div class="input-group-text  bg-primary" id="button-addon-date"><span
+                                                            class="fe fe-calendar fe-16"></span></div>
+                                                </div>
+                                                <input type="datetime-local" class="form-control drgpicker" name="start"
+                                                    >
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="startDate">الى</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend ">
+                                                    <div class="input-group-text  bg-primary" id="button-addon-time">
+                                                        <span class="fe fe-clock fe-16"></span>
+                                                    </div>
+                                                </div>
+                                                <input type="datetime-local" class="form-control time-input" name="end" id="start-time">
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </form>
+                                <form id="form-scientific-paper" style="display: none">
+                                    @csrf
+                                    <input type="hidden" name="type" value="scientific-paper">
+                                    <div class="form-group">
+                                        <label for="eventTitle" class="col-form-label">عنوان الورقة </label>
+                                        <input type="text" class="form-control" name="title" id="eventTitle"
+                                            placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="eventNote" class="col-form-label">المكان</label>
+                                        <textarea class="form-control" id="eventNote" name="note" placeholder=""></textarea>
+                                    </div>
+                                
+                                    <label for="date-input1">موعد التسليم </label>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="date-input1">من </label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend ">
+                                                    <div class="input-group-text  bg-primary" id="button-addon-date"><span
+                                                            class="fe fe-calendar fe-16"></span></div>
+                                                </div>
+                                                <input type="datetime-local" class="form-control drgpicker" name="start"
+                                                    >
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="startDate">الى</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend ">
+                                                    <div class="input-group-text  bg-primary" id="button-addon-time">
+                                                        <span class="fe fe-clock fe-16"></span>
+                                                    </div>
+                                                </div>
+                                                <input type="datetime-local" class="form-control time-input" name="end" id="start-time">
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </form>
+                                <div class="text-danger error-todo"></div>
                             </div>
                             <div class="modal-footer d-flex justify-content-between">
                                 <button type="button" class="btn mb-2 btn-primary" id="save-time">حفظ</button>
@@ -429,17 +526,40 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
 
+var type = {
+    "lutcer":'محاضرة',
+    "conference":'مؤتمر',
+    "discussion":'مناقشة بحث',
+        "meeting":'اجتماع',
+        "activety":'امتحان',
+        "A-seminar":'ندوة',
+        "scientific-paper":'تسليم ورقة علمية'
+}
             function getDescription(id) {
                 axios.get('/api/todo/' + id).then((res) => {
                     data = res.data
+                    console.log(data.type_repet)
                     Swal.fire(
-                        `${data.title}`,
+                        `${type[`${data.type_repet}`]} ${data.title}`,
                         `${data.note} <br> ${data.start} <br> ${data.end} `,
                         'info'
                         )
                 })
             }
 
+            function checkTime() {
+            // الحصول على قيم موعد البداية وموعد النهاية
+            var startTime = document.getElementById("startTime").value;
+            var endTime = document.getElementById("endTime").value;
+
+            // التحقق من أن موعد النهاية بعد موعد البداية
+            if (startTime < endTime) {
+                return true;
+            } else {
+                $(".error-todo").append("خطأ: موعد نهاية المحاضرة يجب أن يكون بعد موعد البداية.");
+                return false;
+            }
+        }
         /** full calendar */
         var event = @json($todo);
         var calendarEl = document.getElementById('calendar');
@@ -501,8 +621,15 @@
                 })
             }
 
-            $(".nav-link").click(function(){
-                name = $(this).data('form')
+            // $(".nav-link").click(function(){
+            //     name = $(this).data('form')
+            //     $('form').hide()
+            //     $(`#${name}`).show()
+            //     $(this).parent().siblings().children().removeClass('active');
+            //     $(this).addClass('active')
+            // })
+            $('#chose_form').change(function(){
+                name = $(this).val()
                 $('form').hide()
                 $(`#${name}`).show()
                 $(this).parent().siblings().children().removeClass('active');
@@ -511,7 +638,7 @@
 
             $('#save-time').click(function(){
                 $(".error-todo").html("")
-                var form = $('.nav-link.active').data('form')
+                var form = $('#chose_form').val()
                 if(form != "form-todo"){
                 axios.post("{{ route('check_date') }}",
                 $(`#${form}`).serialize()
@@ -535,7 +662,7 @@
                         save(form);
                     }
                     });
-                }).catch((error)=>{
+                }).catch((res)=>{
                     var error = res.response.data.errors
                     for (let x in error) {
                         for (let y of error[x]) {
@@ -544,7 +671,9 @@
                     }
                 })
                 }else{
-                    save(form);
+                    if(checkTime()){
+                        save(form);
+                    }
                 }
             })
         })

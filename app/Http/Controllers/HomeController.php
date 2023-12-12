@@ -27,7 +27,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $todo = TodoList::select("id", "start", "end", "note as description")->where('user_id', Auth::id())->get();
+        $todo = TodoList::select("id", "start", "end", "note as description",'type_repet')->where('user_id', Auth::id())->get();
 
         return view('public/home', compact("todo"));
     }
